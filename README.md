@@ -1,6 +1,8 @@
 # neo4ACL
 An unmanaged extension to provide a generic access control layer with Neo4j, through http/json endpoints. This is not a REST API.
 
+[![Build Status](https://travis-ci.org/wfreeman/neo4ACL.png?branch=master)](https://travis-ci.org/wfreeman/neo4ACL)
+
 ## installation
 
 ## usage
