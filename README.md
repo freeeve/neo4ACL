@@ -9,10 +9,10 @@ The standalone endpoints are a generic ACL solution, disconnected from the rest 
 ### standalone endpoints
 The standalone endpoints are meant to be treated as a user/group/permission/content service. The goal is to provide a way for non-neo4j experts to take advantage of the speed of hierarchical traversals for access control management.
 
-#### /acl/init (GET/POST)
+#### /acl/init GET
 Creates appropriate indexes. Only needs to be run once, but won't hurt anything if it is run again.
 
-#### /acl/users
+#### /acl/users POST
 
 ##### /acl/users/create
 The users create action takes 1 required parameter: `id`, and one optional parameters: `props`, an object that can be primitives or collections of primitives as values.
@@ -20,7 +20,7 @@ The users create action takes 1 required parameter: `id`, and one optional param
 ``` JavaScript
 { 
   "id":"unique string id",
-  "props":{"foo":"bar"}, // optional
+  "props":{"foo":"bar"} // optional
 }
 ```
 
@@ -29,7 +29,7 @@ The users update action takes the same parameters as "create", but won't create 
 ``` JavaScript
 { 
   "id":"unique string id",
-  "props":{"foo":"bar"}, // optional
+  "props":{"foo":"bar"} // optional
 }
 ```
 
