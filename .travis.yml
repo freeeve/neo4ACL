@@ -11,7 +11,9 @@ script:
   - sbt package
   - cp target/scala*/neo4acl*.jar neo4j-community-$NEO_VERSION/lib/
   - neo4j-community-$NEO_VERSION/bin/neo4j start
+  - go test 
 
 before_install:
   - wget dist.neo4j.org/neo4j-community-$NEO_VERSION-unix.tar.gz
   - tar -xzf neo4j-community-$NEO_VERSION-unix.tar.gz
+  - echo "org.neo4j.server.thirdparty_jaxrs_classes=neo4ACL=/acl" >> neo4j-community-$NEO_VERSION/conf/neo4j-server.properties
