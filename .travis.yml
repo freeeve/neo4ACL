@@ -10,9 +10,9 @@ env:
 script:
   - sbt package
   - cp target/scala*/neo4acl*.jar neo4j-community-$NEO_VERSION/lib/
-  - neo4j-community-$NEO_VERSION/bin/neo4j start
   - wget http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.jar -P neo4j-community-$NEO_VERSION/lib/
   - wget http://repo1.maven.org/maven2/net/liftweb/lift-json_2.10/2.5.1/lift-json_2.10-2.5.1.jar -P neo4j-community-$NEO_VERSION/lib/
+  - neo4j-community-$NEO_VERSION/bin/neo4j start
   - go test 
 
 before_install:
