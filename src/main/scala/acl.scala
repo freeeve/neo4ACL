@@ -20,25 +20,18 @@ class acl(@Context db:GraphDatabaseService) {
 
   implicit val formats = Serialization.formats(NoTypeHints)
 
-  @GET
+  @POST
+  @Consumes(Array("text/plain", "application/json"))
   @Path("/init")
   @Produces(Array("application/json"))
   def init() = {
-    val tx = db.beginTx
-    try {
-      val ee = new ExecutionEngine(db)
-      ee.execute("CREATE CONSTRAINT ON (u:_User) ASSERT u._id IS UNIQUE")
-      ee.execute("CREATE CONSTRAINT ON (g:_Group) ASSERT g._id IS UNIQUE")
-      ee.execute("CREATE CONSTRAINT ON (p:_Permission) ASSERT p._id IS UNIQUE")
-      ee.execute("CREATE CONSTRAINT ON (c:_Content) ASSERT c._id IS UNIQUE")
- 
-      tx.success
-      Response.ok(MediaType.APPLICATION_JSON).build()
-    } catch {
-      case e:Exception => Response.status(500).entity(e.getMessage).build()
-    } finally {
-      tx.close
-    }
+    val ee = new ExecutionEngine(db)
+    ee.execute("CREATE CONSTRAINT ON (u:_User) ASSERT u._id IS UNIQUE")
+    ee.execute("CREATE CONSTRAINT ON (g:_Group) ASSERT g._id IS UNIQUE")
+    ee.execute("CREATE CONSTRAINT ON (p:_Permission) ASSERT p._id IS UNIQUE")
+    ee.execute("CREATE CONSTRAINT ON (c:_Content) ASSERT c._id IS UNIQUE")
+
+    Response.ok("""{"ok":true}""", MediaType.APPLICATION_JSON).build()
   }
 
   case class IdProps(id:String,props:collection.mutable.Map[String,Any])

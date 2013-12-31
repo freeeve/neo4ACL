@@ -9,7 +9,7 @@ env:
 
 script:
   - sbt package
-  - install_at_path.sh neo4j-community-$NEO_VERSION/lib/
+  - ./install_at_path.sh neo4j-community-$NEO_VERSION/lib/
   - neo4j-community-$NEO_VERSION/bin/neo4j start
   - cat neo4j-community-$NEO_VERSION/data/graph.db/messages.log
   - go test 
